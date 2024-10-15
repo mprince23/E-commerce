@@ -1,4 +1,4 @@
-const domin = process.env.BACKEND_URL
+const domin = process.env.REACT_BACKEND_URL
 
 const Api = {
     signUp: {
