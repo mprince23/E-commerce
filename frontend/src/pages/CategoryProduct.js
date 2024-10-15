@@ -4,8 +4,17 @@ import ProductCategory from '../helper/ProductCategory'
 import CategroyWiseProductDisplay from '../components/CategroyWiseProductDisplay'
 import VerticalCard from '../components/VerticalCard'
 import Api from '../Common'
+import { Button, Drawer } from '@mui/material'
+import { IoMdClose } from "react-icons/io";
+import { IoFilter } from "react-icons/io5";
 
 const CategoryProduct = () => {
+
+    const [open, setOpen] = React.useState(false);
+
+    const toggleDrawer = (newOpen) => () => {
+        setOpen(newOpen);
+    };
 
     const params = useParams()
     const [data, setData] = useState([])
@@ -109,10 +118,10 @@ const CategoryProduct = () => {
 
             {/* desktop version */}
 
-            <div className="hidden md:grid grid-cols-[200px,1fr] gap-12">
+            <div className="grid lg:grid-cols-[200px,1fr] lg:gap-12">
                 {/* left side */}
 
-                <div className="bg-white px-4 py-3 min-h-[calc(100vh-120px)] w-64 overflow-y-scroll scrollbar-hide shadow-xl">
+                <div className="hidden lg:block bg-white px-4 py-3 min-h-[calc(100vh-120px)] w-64 overflow-y-scroll scrollbar-hide shadow-xl">
 
                     {/* sort by */}
 
@@ -157,6 +166,69 @@ const CategoryProduct = () => {
                     </div>
 
 
+                </div>
+
+
+                <div className='lg:hidden block'>
+                    <Button onClick={toggleDrawer(true)} sx={{ color: "black", gap: '8px', display: "flex", justifyContent: "end", width: "95%" }}><IoFilter /> Filter</Button>
+                    <Drawer anchor="bottom" open={open} onClose={toggleDrawer(false)}>
+
+                        <div className="px-3">
+                            {/* sort by */}
+
+                            <div>
+
+                                <div className="border-b py-2 border-slate-300 flex justify-between items-center">
+                                    <h3 className="text-base uppercase font-medium  text-slate-500">Sort by</h3>
+
+                                    {/* Close Button */}
+                                    <div className="">
+                                        <Button onClick={toggleDrawer(false)}>
+                                            <IoMdClose className='text-xl text-black' />
+                                        </Button>
+                                    </div>
+
+                                </div>
+
+                                <form action="" className='text-sm flex flex-col gap-2 py-3'>
+
+                                    <div className='flex items-center gap-3'>
+                                        <input type="radio" name='sortBy' value={"asc"} checked={sortBy === 'asc'} onChange={handleOnChangeSortBy} />
+                                        <label htmlFor="">Price - Low To High</label>
+                                    </div>
+
+                                    <div className='flex items-center gap-3'>
+                                        <input type="radio" name='sortBy' value={"dsc"} checked={sortBy === 'dsc'} onChange={handleOnChangeSortBy} />
+                                        <label htmlFor="">Price - High To Low</label>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                            {/* filter by */}
+
+                            <div className='py-4'>
+                                <h3 className="text-base uppercase font-medium  text-slate-500 border-b pb-2 border-slate-300">Category</h3>
+
+                                <form action="" className='text-sm flex flex-col gap-2 py-3'>
+
+                                    {
+                                        ProductCategory.map((item, index) => {
+                                            return (
+                                                <div className="flex items-center gap-3">
+                                                    <input type="checkbox" name={"category"} value={item?.value} checked={selectCategory[item?.value]} id={item?.value} onChange={handleSelectCategory} />
+                                                    <label htmlFor={item?.value}>{item?.label}</label>
+                                                </div>
+                                            )
+                                        })
+                                    }
+
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </Drawer>
                 </div>
 
 

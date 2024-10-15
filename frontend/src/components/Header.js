@@ -60,11 +60,11 @@ const Header = () => {
 
     return (
         <>
-            <header className="h-16 shadow-md bg-white fixed w-full z-50">
-                <div className="h-full flex items-center justify-between container mx-auto">
+            <header className="h-16 shadow-md bg-white fixed w-full z-50 md:px-0 px-4">
+                <div className="h-full flex items-center justify-between md:container mx-auto">
                     <div>
                         <Link to={'/'}>
-                            <img src={Logo} alt="" className='w-28' />
+                            <img src={Logo} alt="" className='sm:w-28 w-24' />
                         </Link>
                     </div>
 
@@ -75,7 +75,7 @@ const Header = () => {
                         </div>
                     </div>
 
-                    <div className='flex items-center gap-7'>
+                    <div className='flex items-center sm:gap-7 gap-3.5'>
 
                         <div className='relative flex justify-center'>
                             {
@@ -83,7 +83,7 @@ const Header = () => {
                                     <div className='text-2xl cursor-pointer relative flex justify-center' onClick={() => setMenuDisplay(preve => !preve)}>
                                         {
                                             user?.profilepic ? (
-                                                <img src={user.profilepic} alt={user.name} className='w-8 h-8 rounded-full' />
+                                                <img src={user.profilepic} alt={user.name} className='sm:w-8 sm:h-8 w-7 h-7 rounded-full' />
                                             ) : (
                                                 <FaRegCircleUser />
                                             )
@@ -113,11 +113,11 @@ const Header = () => {
 
                         {
                             user?._id && (
-                                <Link to={'/cart'} className='text-2xl cursor-pointer relative'>
+                                <Link to={'/cart'} className='sm:text-2xl text-xl cursor-pointer relative'>
                                     <span><FaShoppingCart /></span>
 
-                                    <div className="bg-red-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-2 -right-3">
-                                        <p className='text-sm'>{context?.countcartProduct}</p>
+                                    <div className="bg-red-600 text-white sm:w-5 sm:h-5 w-4 h-4 rounded-full p-1 flex items-center justify-center absolute -top-2 -right-3">
+                                        <p className='sm:text-sm text-xs'>{context?.countcartProduct}</p>
                                     </div>
                                 </Link>
                             )
@@ -126,7 +126,7 @@ const Header = () => {
                         <div>
                             {
                                 user?._id ? (
-                                    <button onClick={handleLogout} className='px-3 py-1 rounded-full bg-red-600 text-white hover:bg-red-700'>Logout</button>
+                                    <button onClick={handleLogout} className='px-1.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-red-600 text-white hover:bg-red-700'>Logout</button>
                                 ) : (
                                     <Link to={'/login'} className='px-3 py-1 rounded-full bg-red-600 text-white hover:bg-red-700'>Login</Link>
                                 )

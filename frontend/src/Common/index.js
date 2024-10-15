@@ -1,4 +1,4 @@
-const domin = "http://localhost:4000"
+const domin = process.env.BACKEND_URL
 
 const Api = {
     signUp: {

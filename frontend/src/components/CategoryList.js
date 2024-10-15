@@ -28,8 +28,8 @@ const CategoryList = () => {
     }, [])
 
     return (
-            <div className='container mx-auto'>
-                <div className="scrollbar-hide flex items-center gap-4 justify-between overflow-scroll">
+            <div className='md:container mx-auto'>
+                <div className="scrollbar-hide flex items-center gap-4 justify-between overflow-scroll md:px-0 px-2.5">
                     {
                         loading ? (
                             categoryLoding.map((item, index) => {
