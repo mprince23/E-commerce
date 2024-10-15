@@ -145,7 +145,7 @@ const Cart = () => {
 
 
     return (
-        <div className='px-5 lg:px-16 mx-auto'>
+        <div className='px-3 lg:px-16 mx-auto'>
             <div className="text-center text-lg my-3">
                 {
                     data.length === 0 && !loading && (
@@ -170,25 +170,25 @@ const Cart = () => {
                         ) : (
                             data.map((item, index) => {
                                 return (
-                                    <div key={item?._id + 'Add To Cart'} className='w-full bg-white h-32 my-2 border border-slate-300 rounded grid grid-cols-[128px,1fr]'>
-                                        <div className="w-32 h-32 bg-slate-200">
+                                    <div key={item?._id + 'Add To Cart'} className='w-full bg-white h-46 sm:h-32 my-2 border border-slate-300 rounded grid grid-cols-[128px,1fr]'>
+                                        <div className="w-32 sm:h-32 h-full bg-slate-200">
                                             <img src={item?.productId?.productImage[0]} alt="" className='w-full h-full object-scale-down mix-blend-multiply' />
                                         </div>
-                                        <div className="px-4 py-2 relative">
+                                        <div className="sm:px-4 px-2.5 py-2 relative">
 
 
 
                                             {/* delete product */}
 
-                                            <div className='absolute right-0 px-2'>
-                                                <button className='text-red-600 rounded-full hover:bg-red-600 hover:text-white p-1' onClick={() => deleteCartProduct(item?._id)}><MdDelete /></button>
+                                            <div className='sm:absolute right-0 sm:px-2'>
+                                                <button className='text-red-600 rounded-full hover:bg-red-600 hover:text-white p-1 flex justify-end w-full' onClick={() => deleteCartProduct(item?._id)}><MdDelete /></button>
                                             </div>
 
                                             <h2 className='text-lg text-ellipsis line-clamp-1'>{item?.productId?.productName}</h2>
                                             <p className='capitalize text-slate-500 text-sm'>{item?.productId?.category}</p>
-                                            <div className="flex items-center justify-between">
-                                                <p className='font-medium text-md'>{displayINRCurrency(item?.productId?.sellingPrice)}</p>
-                                                <p className='font-semibold text-slate-600 text-md'>{displayINRCurrency(item?.productId?.sellingPrice * item?.quntity)}</p>
+                                            <div className="flex sm:items-center justify-between flex-col sm:flex-row">
+                                                <p className='font-medium text-md'>Price : {displayINRCurrency(item?.productId?.sellingPrice)}</p>
+                                                <p className='font-semibold text-slate-600 text-md'>Total Price : {displayINRCurrency(item?.productId?.sellingPrice * item?.quntity)}</p>
                                             </div>
                                             <div className="flex items-center gap-3 mt-2">
                                                 <button className='border border-red-600 text-red-600 w-6 h-6 flex justify-center items-center rounded hover:bg-red-600 hover:text-white' onClick={() => increaseQty(item?._id, item?.quntity)}>+</button>
